@@ -1,7 +1,13 @@
 const server = require('./server.js');
 const request = require('supertest');
+const db = require('../data/dbConfig.js');
 
 describe('server.js', () => {
+
+  beforeEach(async () => {
+    await db('dogs').truncate()
+  })
+
   test('should be testing the environment', () => {
     expect(process.env.DB_ENV).toBe('testing')
   })
