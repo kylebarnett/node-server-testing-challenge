@@ -21,4 +21,19 @@ server.get('/dogs', (req, res) => {
     })
 })
 
+server.post('/dogs', (req, res) => {
+  let dogInfo = req.body;
+  if (!dogInfo.dog_name || !dogInfo.dog_breed) {
+    res.status(400).json({ message: 'Please include dog name and dog breed.' })
+  } else {
+    Dogs.insert(dogInfo)
+      .then(body => {
+        res.json(body)
+      })
+      .catch(err => {
+        res.status(500).json({ message: 'Error on the backend!' })
+      })
+  }
+})
+
 module.exports = server;
