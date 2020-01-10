@@ -24,4 +24,14 @@ describe('dogs model', () => {
       expect(dogs[1].dog_breed).toBe('Breed2');
     })
   })
+
+  describe('delete', () => {
+    it('should delete a dog in the db', async () => {
+      await Dogs.insert({ dog_name: 'Arlo', dog_breed: 'Breed1' })
+      await Dogs.insert({ dog_name: 'Butler', dog_breed: 'Breed2' })
+      const dogs = await db('dogs')
+      // await Dogs.remove({id})
+      console.log(dogs[0].id)
+    })
+  })
 })

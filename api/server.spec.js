@@ -27,4 +27,15 @@ describe('server.js', () => {
       expect(res.body).toEqual({ api: 'up and running' })
     })
   })
+
+  describe('POST', () => {
+    it('should return 200 OK', async () => {
+      const res = await request(server).post('/dogs');
+      expect(res.status).toBe(400)
+    })
+    it('should be json', async () => {
+      const res = await request(server).post('/dogs');
+      expect(res.type).toBe('application/json')
+    })
+  })
 })
